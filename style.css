@@ -428,11 +428,59 @@ footer {
     }
 
     .gallery-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .music-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .music-card {
+        padding: 2rem 1rem;
+    }
+
+    .music-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .music-card p {
+        font-size: 0.85rem;
+    }
+
+    .music-icon svg {
+        width: 36px;
+        height: 36px;
     }
 
     .section-title {
         font-size: 2rem;
+    }
+
+    .about-content {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-menu {
+        gap: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .music-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .gallery-item {
+        max-height: 400px;
     }
 }
 
