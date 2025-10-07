@@ -259,27 +259,23 @@ body {
     margin: 0 auto;
 }
 
-.music-grid {
+.singles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
 
-.music-card {
+.single-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 3rem 2rem;
-    text-align: center;
-    text-decoration: none;
-    color: var(--text-color);
+    padding: 2rem;
     transition: all 0.4s ease;
-    cursor: pointer;
     position: relative;
     overflow: hidden;
 }
 
-.music-card::before {
+.single-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -292,50 +288,69 @@ body {
     z-index: 0;
 }
 
-.music-card:hover::before {
+.single-card:hover::before {
     opacity: 0.1;
 }
 
-.music-card:hover {
-    transform: translateY(-10px);
+.single-card:hover {
+    transform: translateY(-5px);
     border-color: rgba(102, 126, 234, 0.5);
-    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
 }
 
-.music-icon {
+.single-card h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
     margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.single-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     position: relative;
     z-index: 1;
 }
 
-.music-icon svg {
-    color: rgba(102, 126, 234, 0.8);
+.platform-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 600;
     transition: all 0.3s ease;
 }
 
-.music-card:hover .music-icon svg {
-    color: rgba(102, 126, 234, 1);
-    transform: scale(1.1);
+.platform-link:hover {
+    background: rgba(102, 126, 234, 0.2);
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: translateX(5px);
 }
 
-.music-card h3 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    position: relative;
-    z-index: 1;
+.platform-link.spotify:hover {
+    background: rgba(30, 215, 96, 0.2);
+    border-color: rgba(30, 215, 96, 0.5);
 }
 
-.music-card p {
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.6);
-    position: relative;
-    z-index: 1;
-    transition: color 0.3s ease;
+.platform-link.apple:hover {
+    background: rgba(252, 61, 108, 0.2);
+    border-color: rgba(252, 61, 108, 0.5);
 }
 
-.music-card:hover p {
-    color: rgba(255, 255, 255, 0.9);
+.platform-link svg {
+    flex-shrink: 0;
 }
 
 /* About Section */
@@ -432,26 +447,28 @@ footer {
         gap: 1rem;
     }
 
-    .music-grid {
+    .singles-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
-    .music-card {
-        padding: 2rem 1rem;
+    .single-card {
+        padding: 1.5rem;
     }
 
-    .music-card h3 {
-        font-size: 1.3rem;
+    .single-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
     }
 
-    .music-card p {
-        font-size: 0.85rem;
+    .platform-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
     }
 
-    .music-icon svg {
-        width: 36px;
-        height: 36px;
+    .platform-link svg {
+        width: 20px;
+        height: 20px;
     }
 
     .section-title {
@@ -474,7 +491,7 @@ footer {
         gap: 1rem;
     }
 
-    .music-grid {
+    .singles-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
