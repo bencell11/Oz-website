@@ -269,10 +269,12 @@ body {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 0;
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .single-card::before {
@@ -298,11 +300,41 @@ body {
     box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
 }
 
-.single-card h3 {
+.single-cover {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.single-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.single-card:hover .single-cover img {
+    transform: scale(1.1);
+}
+
+.cover-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    padding: 2rem 1.5rem 1.5rem;
+    display: flex;
+    align-items: flex-end;
+}
+
+.cover-overlay h3 {
     font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 1.5rem;
-    text-align: center;
+    margin: 0;
+    text-align: left;
     position: relative;
     z-index: 1;
     background: var(--gradient);
@@ -317,6 +349,7 @@ body {
     gap: 1rem;
     position: relative;
     z-index: 1;
+    padding: 1.5rem;
 }
 
 .platform-link {
@@ -453,12 +486,16 @@ footer {
     }
 
     .single-card {
-        padding: 1.5rem;
+        padding: 0;
     }
 
-    .single-card h3 {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
+    .cover-overlay h3 {
+        font-size: 1.3rem;
+    }
+
+    .single-links {
+        padding: 1rem;
+        gap: 0.75rem;
     }
 
     .platform-link {
@@ -497,12 +534,20 @@ footer {
     }
 
     .single-card {
-        padding: 1rem;
+        padding: 0;
     }
 
-    .single-card h3 {
-        font-size: 1.2rem;
-        margin-bottom: 0.75rem;
+    .cover-overlay {
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .cover-overlay h3 {
+        font-size: 1rem;
+    }
+
+    .single-links {
+        padding: 0.75rem;
+        gap: 0.5rem;
     }
 
     .platform-link {
