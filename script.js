@@ -188,60 +188,89 @@ document.querySelectorAll('a, button, .gallery-item').forEach(el => {
     });
 });
 
-// Particle system
+// Enhanced particle system
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 15; // Subtle amount
+    const particleCount = 35; // More particles for better effect
+
+    // Color palette for particles
+    const colors = [
+        'rgba(102, 126, 234, 0.6)',  // Purple-blue
+        'rgba(118, 75, 162, 0.6)',   // Purple
+        'rgba(255, 0, 110, 0.5)',    // Pink accent
+        'rgba(167, 139, 250, 0.6)',  // Light purple
+        'rgba(139, 92, 246, 0.5)',   // Violet
+    ];
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
 
-        // Random size (small particles)
-        const size = Math.random() * 4 + 2;
+        // Random size with more variation
+        const size = Math.random() * 6 + 2;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
+
+        // Random color from palette
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.background = color;
+        particle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
 
         // Random starting position
         particle.style.left = `${Math.random() * 100}%`;
         particle.style.bottom = `-${Math.random() * 100}px`;
 
-        // Random animation duration (slower = more subtle)
-        const duration = Math.random() * 15 + 15; // 15-30 seconds
+        // Varied animation duration
+        const duration = Math.random() * 12 + 12; // 12-24 seconds
         particle.style.animationDuration = `${duration}s`;
 
         // Random delay
-        particle.style.animationDelay = `${Math.random() * 5}s`;
+        particle.style.animationDelay = `${Math.random() * 8}s`;
 
         particlesContainer.appendChild(particle);
     }
 }
 
-// Create light orbs
+// Enhanced light orbs
 function createLightOrbs() {
-    const sections = document.querySelectorAll('.music, .about, .gallery');
+    const sections = document.querySelectorAll('.music, .about');
+
+    // Enhanced color palette for orbs
+    const orbColors = [
+        'radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(118, 75, 162, 0.35) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(255, 0, 110, 0.25) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(167, 139, 250, 0.3) 0%, transparent 70%)',
+    ];
 
     sections.forEach(section => {
-        const orb1 = document.createElement('div');
-        orb1.className = 'light-orb';
-        orb1.style.width = '300px';
-        orb1.style.height = '300px';
-        orb1.style.top = `${Math.random() * 50}%`;
-        orb1.style.left = `${Math.random() * 50}%`;
-        orb1.style.animationDuration = `${Math.random() * 5 + 8}s`;
+        // Create 3-4 orbs per section for richer effect
+        const orbCount = Math.floor(Math.random() * 2) + 3;
 
-        const orb2 = document.createElement('div');
-        orb2.className = 'light-orb';
-        orb2.style.width = '250px';
-        orb2.style.height = '250px';
-        orb2.style.top = `${Math.random() * 50 + 50}%`;
-        orb2.style.right = `${Math.random() * 30}%`;
-        orb2.style.animationDuration = `${Math.random() * 5 + 10}s`;
-        orb2.style.animationDelay = `${Math.random() * 3}s`;
+        for (let i = 0; i < orbCount; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'light-orb';
 
-        section.style.position = 'relative';
-        section.appendChild(orb1);
-        section.appendChild(orb2);
+            // Random size between 200-400px
+            const size = Math.random() * 200 + 200;
+            orb.style.width = `${size}px`;
+            orb.style.height = `${size}px`;
+
+            // Random position
+            orb.style.top = `${Math.random() * 80}%`;
+            orb.style.left = `${Math.random() * 80}%`;
+
+            // Random color from palette
+            orb.style.background = orbColors[Math.floor(Math.random() * orbColors.length)];
+
+            // Varied animation
+            orb.style.animationDuration = `${Math.random() * 8 + 10}s`;
+            orb.style.animationDelay = `${Math.random() * 4}s`;
+
+            section.style.position = 'relative';
+            section.style.overflow = 'hidden';
+            section.appendChild(orb);
+        }
     });
 }
 
