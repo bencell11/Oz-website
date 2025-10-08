@@ -93,6 +93,7 @@ body {
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_8052.jpeg') center/cover;
     overflow: hidden;
+    will-change: transform;
 }
 
 .hero::before {
@@ -206,7 +207,7 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 0;
-    transition: all 0.4s ease;
+    transition: transform 0.4s ease, border-color 0.4s ease;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -216,6 +217,7 @@ body {
         0 0 40px rgba(102, 126, 234, 0.1),
         inset 0 0 60px rgba(102, 126, 234, 0.03);
     animation: neonPulse 4s ease-in-out infinite;
+    will-change: box-shadow;
 }
 
 @keyframes neonPulse {
@@ -531,6 +533,7 @@ footer {
     animation: float linear infinite, pulse 2s ease-in-out infinite;
     opacity: 0;
     filter: blur(0.5px);
+    will-change: transform, opacity;
 }
 
 @keyframes float {
@@ -570,6 +573,7 @@ footer {
     animation: orbFloat ease-in-out infinite;
     pointer-events: none;
     mix-blend-mode: screen;
+    will-change: transform, opacity;
 }
 
 @keyframes orbFloat {

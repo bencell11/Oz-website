@@ -138,12 +138,20 @@ galleryItems.forEach(item => {
     });
 });
 
-// Parallax effect for hero section
+// Optimized parallax effect for hero section
+let ticking = false;
+
 window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    if (!ticking) {
+        window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
+            }
+            ticking = false;
+        });
+        ticking = true;
     }
 });
 
@@ -188,10 +196,10 @@ document.querySelectorAll('a, button, .gallery-item').forEach(el => {
     });
 });
 
-// Intense particle system
+// Optimized particle system
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 80; // Much more particles for dramatic effect
+    const particleCount = 50; // Balanced for performance
 
     // Enhanced color palette with brighter colors
     const colors = [
