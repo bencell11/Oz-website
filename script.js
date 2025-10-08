@@ -188,84 +188,89 @@ document.querySelectorAll('a, button, .gallery-item').forEach(el => {
     });
 });
 
-// Enhanced particle system
+// Intense particle system
 function createParticles() {
     const particlesContainer = document.getElementById('particles');
-    const particleCount = 35; // More particles for better effect
+    const particleCount = 80; // Much more particles for dramatic effect
 
-    // Color palette for particles
+    // Enhanced color palette with brighter colors
     const colors = [
-        'rgba(102, 126, 234, 0.6)',  // Purple-blue
-        'rgba(118, 75, 162, 0.6)',   // Purple
-        'rgba(255, 0, 110, 0.5)',    // Pink accent
-        'rgba(167, 139, 250, 0.6)',  // Light purple
-        'rgba(139, 92, 246, 0.5)',   // Violet
+        'rgba(102, 126, 234, 0.9)',  // Bright purple-blue
+        'rgba(118, 75, 162, 0.85)',   // Bright purple
+        'rgba(255, 0, 110, 0.8)',    // Bright pink accent
+        'rgba(167, 139, 250, 0.9)',  // Bright light purple
+        'rgba(139, 92, 246, 0.85)',   // Bright violet
+        'rgba(124, 58, 237, 0.8)',   // Deep purple
+        'rgba(236, 72, 153, 0.75)',  // Hot pink
     ];
 
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
 
-        // Random size with more variation
-        const size = Math.random() * 6 + 2;
+        // Larger particles with more variation
+        const size = Math.random() * 10 + 3;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
 
         // Random color from palette
         const color = colors[Math.floor(Math.random() * colors.length)];
         particle.style.background = color;
-        particle.style.boxShadow = `0 0 ${size * 2}px ${color}`;
+        // Stronger glow effect
+        particle.style.boxShadow = `0 0 ${size * 4}px ${color}, 0 0 ${size * 8}px ${color}`;
 
         // Random starting position
         particle.style.left = `${Math.random() * 100}%`;
-        particle.style.bottom = `-${Math.random() * 100}px`;
+        particle.style.bottom = `-${Math.random() * 150}px`;
 
-        // Varied animation duration
-        const duration = Math.random() * 12 + 12; // 12-24 seconds
+        // Faster animation
+        const duration = Math.random() * 10 + 8; // 8-18 seconds (faster)
         particle.style.animationDuration = `${duration}s`;
 
         // Random delay
-        particle.style.animationDelay = `${Math.random() * 8}s`;
+        particle.style.animationDelay = `${Math.random() * 6}s`;
 
         particlesContainer.appendChild(particle);
     }
 }
 
-// Enhanced light orbs
+// Dramatic light orbs
 function createLightOrbs() {
-    const sections = document.querySelectorAll('.music, .about');
+    const sections = document.querySelectorAll('.music, .about, .hero');
 
-    // Enhanced color palette for orbs
+    // Intense color palette for orbs
     const orbColors = [
-        'radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%)',
-        'radial-gradient(circle, rgba(118, 75, 162, 0.35) 0%, transparent 70%)',
-        'radial-gradient(circle, rgba(255, 0, 110, 0.25) 0%, transparent 70%)',
-        'radial-gradient(circle, rgba(167, 139, 250, 0.3) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, rgba(102, 126, 234, 0.2) 40%, transparent 70%)',
+        'radial-gradient(circle, rgba(118, 75, 162, 0.65) 0%, rgba(118, 75, 162, 0.25) 40%, transparent 70%)',
+        'radial-gradient(circle, rgba(255, 0, 110, 0.5) 0%, rgba(255, 0, 110, 0.15) 40%, transparent 70%)',
+        'radial-gradient(circle, rgba(167, 139, 250, 0.6) 0%, rgba(167, 139, 250, 0.2) 40%, transparent 70%)',
+        'radial-gradient(circle, rgba(124, 58, 237, 0.55) 0%, rgba(124, 58, 237, 0.2) 40%, transparent 70%)',
+        'radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(236, 72, 153, 0.15) 40%, transparent 70%)',
     ];
 
     sections.forEach(section => {
-        // Create 3-4 orbs per section for richer effect
-        const orbCount = Math.floor(Math.random() * 2) + 3;
+        // Create 5-7 orbs per section for intense effect
+        const orbCount = Math.floor(Math.random() * 3) + 5;
 
         for (let i = 0; i < orbCount; i++) {
             const orb = document.createElement('div');
             orb.className = 'light-orb';
 
-            // Random size between 200-400px
-            const size = Math.random() * 200 + 200;
+            // Larger orbs: 250-500px
+            const size = Math.random() * 250 + 250;
             orb.style.width = `${size}px`;
             orb.style.height = `${size}px`;
 
             // Random position
-            orb.style.top = `${Math.random() * 80}%`;
-            orb.style.left = `${Math.random() * 80}%`;
+            orb.style.top = `${Math.random() * 100}%`;
+            orb.style.left = `${Math.random() * 100}%`;
 
             // Random color from palette
             orb.style.background = orbColors[Math.floor(Math.random() * orbColors.length)];
 
-            // Varied animation
-            orb.style.animationDuration = `${Math.random() * 8 + 10}s`;
-            orb.style.animationDelay = `${Math.random() * 4}s`;
+            // Faster, more varied animation
+            orb.style.animationDuration = `${Math.random() * 6 + 6}s`;
+            orb.style.animationDelay = `${Math.random() * 3}s`;
 
             section.style.position = 'relative';
             section.style.overflow = 'hidden';
