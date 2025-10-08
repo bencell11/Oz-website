@@ -188,4 +188,67 @@ document.querySelectorAll('a, button, .gallery-item').forEach(el => {
     });
 });
 
+// Particle system
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 15; // Subtle amount
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // Random size (small particles)
+        const size = Math.random() * 4 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+
+        // Random starting position
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.bottom = `-${Math.random() * 100}px`;
+
+        // Random animation duration (slower = more subtle)
+        const duration = Math.random() * 15 + 15; // 15-30 seconds
+        particle.style.animationDuration = `${duration}s`;
+
+        // Random delay
+        particle.style.animationDelay = `${Math.random() * 5}s`;
+
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Create light orbs
+function createLightOrbs() {
+    const sections = document.querySelectorAll('.music, .about, .gallery');
+
+    sections.forEach(section => {
+        const orb1 = document.createElement('div');
+        orb1.className = 'light-orb';
+        orb1.style.width = '300px';
+        orb1.style.height = '300px';
+        orb1.style.top = `${Math.random() * 50}%`;
+        orb1.style.left = `${Math.random() * 50}%`;
+        orb1.style.animationDuration = `${Math.random() * 5 + 8}s`;
+
+        const orb2 = document.createElement('div');
+        orb2.className = 'light-orb';
+        orb2.style.width = '250px';
+        orb2.style.height = '250px';
+        orb2.style.top = `${Math.random() * 50 + 50}%`;
+        orb2.style.right = `${Math.random() * 30}%`;
+        orb2.style.animationDuration = `${Math.random() * 5 + 10}s`;
+        orb2.style.animationDelay = `${Math.random() * 3}s`;
+
+        section.style.position = 'relative';
+        section.appendChild(orb1);
+        section.appendChild(orb2);
+    });
+}
+
+// Initialize particles and orbs on load
+window.addEventListener('load', () => {
+    createParticles();
+    createLightOrbs();
+});
+
 console.log('OZ Portfolio - Ready ✨');
