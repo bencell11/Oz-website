@@ -234,43 +234,41 @@ function createParticles() {
     }
 }
 
-// Dramatic light orbs
+// Subtle light orbs (previous version)
 function createLightOrbs() {
-    const sections = document.querySelectorAll('.music, .about, .hero');
+    const sections = document.querySelectorAll('.music, .about');
 
-    // Intense color palette for orbs
+    // Enhanced color palette for orbs
     const orbColors = [
-        'radial-gradient(circle, rgba(102, 126, 234, 0.6) 0%, rgba(102, 126, 234, 0.2) 40%, transparent 70%)',
-        'radial-gradient(circle, rgba(118, 75, 162, 0.65) 0%, rgba(118, 75, 162, 0.25) 40%, transparent 70%)',
-        'radial-gradient(circle, rgba(255, 0, 110, 0.5) 0%, rgba(255, 0, 110, 0.15) 40%, transparent 70%)',
-        'radial-gradient(circle, rgba(167, 139, 250, 0.6) 0%, rgba(167, 139, 250, 0.2) 40%, transparent 70%)',
-        'radial-gradient(circle, rgba(124, 58, 237, 0.55) 0%, rgba(124, 58, 237, 0.2) 40%, transparent 70%)',
-        'radial-gradient(circle, rgba(236, 72, 153, 0.5) 0%, rgba(236, 72, 153, 0.15) 40%, transparent 70%)',
+        'radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(118, 75, 162, 0.35) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(255, 0, 110, 0.25) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(167, 139, 250, 0.3) 0%, transparent 70%)',
     ];
 
     sections.forEach(section => {
-        // Create 5-7 orbs per section for intense effect
-        const orbCount = Math.floor(Math.random() * 3) + 5;
+        // Create 3-4 orbs per section for richer effect
+        const orbCount = Math.floor(Math.random() * 2) + 3;
 
         for (let i = 0; i < orbCount; i++) {
             const orb = document.createElement('div');
             orb.className = 'light-orb';
 
-            // Larger orbs: 250-500px
-            const size = Math.random() * 250 + 250;
+            // Random size between 200-400px
+            const size = Math.random() * 200 + 200;
             orb.style.width = `${size}px`;
             orb.style.height = `${size}px`;
 
             // Random position
-            orb.style.top = `${Math.random() * 100}%`;
-            orb.style.left = `${Math.random() * 100}%`;
+            orb.style.top = `${Math.random() * 80}%`;
+            orb.style.left = `${Math.random() * 80}%`;
 
             // Random color from palette
             orb.style.background = orbColors[Math.floor(Math.random() * orbColors.length)];
 
-            // Faster, more varied animation
-            orb.style.animationDuration = `${Math.random() * 6 + 6}s`;
-            orb.style.animationDelay = `${Math.random() * 3}s`;
+            // Varied animation
+            orb.style.animationDuration = `${Math.random() * 8 + 10}s`;
+            orb.style.animationDelay = `${Math.random() * 4}s`;
 
             section.style.position = 'relative';
             section.style.overflow = 'hidden';
