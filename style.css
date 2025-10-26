@@ -271,14 +271,16 @@ body {
     border-radius: 20px 20px 0 0;
 }
 
-.single-cover img {
+.single-cover img,
+.single-cover .cover-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-.single-card:hover .single-cover img {
+.single-card:hover .single-cover img,
+.single-card:hover .single-cover .cover-video {
     transform: scale(1.1);
 }
 
