@@ -443,29 +443,41 @@ function initMobileMenu() {
     }
 }
 
-// Optimize videos for mobile (disable autoplay on mobile to save data)
+// Optimize videos for mobile
 function optimizeVideosForMobile() {
     const isMobile = window.innerWidth <= 768;
-    const videos = document.querySelectorAll('.cover-video');
 
-    videos.forEach(video => {
-        if (isMobile) {
-            // On mobile, pause videos and require user interaction
-            video.removeAttribute('autoplay');
-            video.pause();
+    if (isMobile) {
+        // On mobile, make videos autoplay and enable tap to toggle audio
+        const videoContainers = document.querySelectorAll('.single-cover');
 
-            // Add play on tap for mobile
-            video.addEventListener('click', function() {
-                if (this.paused) {
-                    this.play();
-                    this.muted = false;
+        videoContainers.forEach(container => {
+            const video = container.querySelector('.cover-video');
+            if (!video) return;
+
+            // Ensure autoplay works on mobile (muted required)
+            video.setAttribute('autoplay', '');
+            video.setAttribute('muted', '');
+            video.play().catch(err => {
+                console.log('Autoplay prevented:', err);
+            });
+
+            // Tap anywhere on video container to unmute
+            container.addEventListener('click', function(e) {
+                // Don't trigger if clicking on controls
+                if (e.target.closest('.play-pause-btn') || e.target.closest('.volume-slider')) {
+                    return;
+                }
+
+                if (video.muted) {
+                    video.muted = false;
+                    video.volume = 0.7;
                 } else {
-                    this.pause();
-                    this.muted = true;
+                    video.muted = true;
                 }
             });
-        }
-    });
+        });
+    }
 }
 
 // Initialize particles and orbs on load
