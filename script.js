@@ -326,11 +326,73 @@ function initVideoAudioControls() {
     });
 }
 
+// Mobile menu toggle
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Optimize videos for mobile (disable autoplay on mobile to save data)
+function optimizeVideosForMobile() {
+    const isMobile = window.innerWidth <= 768;
+    const videos = document.querySelectorAll('.cover-video');
+
+    videos.forEach(video => {
+        if (isMobile) {
+            // On mobile, pause videos and require user interaction
+            video.removeAttribute('autoplay');
+            video.pause();
+
+            // Add play on tap for mobile
+            video.addEventListener('click', function() {
+                if (this.paused) {
+                    this.play();
+                    this.muted = false;
+                } else {
+                    this.pause();
+                    this.muted = true;
+                }
+            });
+        }
+    });
+}
+
 // Initialize particles and orbs on load
 window.addEventListener('load', () => {
     createParticles();
     createLightOrbs();
     initVideoAudioControls();
+    initMobileMenu();
+    optimizeVideosForMobile();
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    optimizeVideosForMobile();
 });
 
 console.log('OZ Portfolio - Ready ✨');
