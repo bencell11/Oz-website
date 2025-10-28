@@ -285,43 +285,130 @@ function createLightOrbs() {
     });
 }
 
-// Video audio control on hover
+// Video controls with preferences storage
 function initVideoAudioControls() {
-    const videos = document.querySelectorAll('.cover-video');
+    const videoContainers = document.querySelectorAll('.single-cover');
 
-    videos.forEach(video => {
-        // Store original volume
-        video.volume = 0.7; // Set volume to 70%
+    // Load user preferences from localStorage
+    const getPreference = (key, defaultValue) => {
+        const stored = localStorage.getItem(key);
+        return stored !== null ? JSON.parse(stored) : defaultValue;
+    };
 
-        // Enable audio on mouse enter
-        video.addEventListener('mouseenter', () => {
-            video.muted = false;
-            // Smooth fade in effect
-            video.volume = 0;
-            let vol = 0;
-            const fadeIn = setInterval(() => {
-                if (vol < 0.7) {
-                    vol += 0.1;
-                    video.volume = Math.min(vol, 0.7);
+    const savePreference = (key, value) => {
+        localStorage.setItem(key, JSON.stringify(value));
+    };
+
+    // Load saved volume preference
+    const savedVolume = getPreference('videoVolume', 70);
+
+    videoContainers.forEach(container => {
+        const video = container.querySelector('.cover-video');
+        const playPauseBtn = container.querySelector('.play-pause-btn');
+        const playIcon = container.querySelector('.play-icon');
+        const pauseIcon = container.querySelector('.pause-icon');
+        const volumeSlider = container.querySelector('.volume-slider');
+        const volumeIcon = container.querySelector('.volume-icon');
+
+        if (!video) return;
+
+        // Set initial volume from saved preference
+        video.volume = savedVolume / 100;
+        if (volumeSlider) volumeSlider.value = savedVolume;
+
+        // Update volume icon based on level
+        const updateVolumeIcon = (volume) => {
+            if (!volumeIcon) return;
+            if (volume === 0) {
+                volumeIcon.textContent = '🔇';
+            } else if (volume < 50) {
+                volumeIcon.textContent = '🔉';
+            } else {
+                volumeIcon.textContent = '🔊';
+            }
+        };
+
+        updateVolumeIcon(savedVolume);
+
+        // Play/Pause button functionality
+        if (playPauseBtn) {
+            playPauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (video.paused) {
+                    video.play();
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
                 } else {
-                    clearInterval(fadeIn);
+                    video.pause();
+                    playIcon.style.display = 'block';
+                    pauseIcon.style.display = 'none';
                 }
-            }, 50);
+            });
+        }
+
+        // Volume slider functionality
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', (e) => {
+                const volume = e.target.value;
+                video.volume = volume / 100;
+                updateVolumeIcon(parseInt(volume));
+                savePreference('videoVolume', volume);
+
+                // Unmute if volume is increased from 0
+                if (volume > 0 && video.muted) {
+                    video.muted = false;
+                }
+            });
+        }
+
+        // Original hover audio controls (smooth fade)
+        let fadeInterval;
+
+        container.addEventListener('mouseenter', () => {
+            if (!video.paused) {
+                video.muted = false;
+                // Smooth fade in effect
+                clearInterval(fadeInterval);
+                let vol = 0;
+                fadeInterval = setInterval(() => {
+                    if (vol < savedVolume / 100) {
+                        vol += 0.1;
+                        video.volume = Math.min(vol, savedVolume / 100);
+                    } else {
+                        clearInterval(fadeInterval);
+                    }
+                }, 50);
+            }
         });
 
-        // Mute audio on mouse leave
-        video.addEventListener('mouseleave', () => {
+        container.addEventListener('mouseleave', () => {
             // Smooth fade out effect
+            clearInterval(fadeInterval);
             let vol = video.volume;
-            const fadeOut = setInterval(() => {
+            fadeInterval = setInterval(() => {
                 if (vol > 0) {
                     vol -= 0.1;
                     video.volume = Math.max(vol, 0);
                 } else {
                     video.muted = true;
-                    clearInterval(fadeOut);
+                    clearInterval(fadeInterval);
                 }
             }, 50);
+        });
+
+        // Update play/pause icon when video state changes
+        video.addEventListener('play', () => {
+            if (playIcon && pauseIcon) {
+                playIcon.style.display = 'none';
+                pauseIcon.style.display = 'block';
+            }
+        });
+
+        video.addEventListener('pause', () => {
+            if (playIcon && pauseIcon) {
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
         });
     });
 }
