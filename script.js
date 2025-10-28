@@ -285,10 +285,52 @@ function createLightOrbs() {
     });
 }
 
+// Video audio control on hover
+function initVideoAudioControls() {
+    const videos = document.querySelectorAll('.cover-video');
+
+    videos.forEach(video => {
+        // Store original volume
+        video.volume = 0.7; // Set volume to 70%
+
+        // Enable audio on mouse enter
+        video.addEventListener('mouseenter', () => {
+            video.muted = false;
+            // Smooth fade in effect
+            video.volume = 0;
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                if (vol < 0.7) {
+                    vol += 0.1;
+                    video.volume = Math.min(vol, 0.7);
+                } else {
+                    clearInterval(fadeIn);
+                }
+            }, 50);
+        });
+
+        // Mute audio on mouse leave
+        video.addEventListener('mouseleave', () => {
+            // Smooth fade out effect
+            let vol = video.volume;
+            const fadeOut = setInterval(() => {
+                if (vol > 0) {
+                    vol -= 0.1;
+                    video.volume = Math.max(vol, 0);
+                } else {
+                    video.muted = true;
+                    clearInterval(fadeOut);
+                }
+            }, 50);
+        });
+    });
+}
+
 // Initialize particles and orbs on load
 window.addEventListener('load', () => {
     createParticles();
     createLightOrbs();
+    initVideoAudioControls();
 });
 
 console.log('OZ Portfolio - Ready ✨');
