@@ -96,37 +96,6 @@ body {
     will-change: transform;
 }
 
-/* Infinity Symbol - Using 4Ever cover */
-.infinity-symbol {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80vw;
-    max-width: 600px;
-    opacity: 0.4;
-    z-index: 1;
-    pointer-events: none;
-    animation: infinityFloat 12s ease-in-out infinite;
-}
-
-.infinity-symbol img {
-    width: 100%;
-    height: auto;
-    filter: brightness(1.2) contrast(1.1);
-}
-
-@keyframes infinityFloat {
-    0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.35;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.05);
-        opacity: 0.5;
-    }
-}
-
 .hero::before {
     content: '';
     position: absolute;
