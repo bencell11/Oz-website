@@ -368,50 +368,17 @@ function initVideoAudioControls() {
             });
         }
 
-        // Desktop: play on hover
+        // Desktop: play on hover (muted by default - browsers allow muted autoplay)
         if (!isMobile) {
-            let fadeInterval;
-
             container.addEventListener('mouseenter', () => {
-                // Keep muted initially to allow autoplay, then unmute
+                // Play muted - this always works without user interaction
                 video.muted = true;
-                const playPromise = video.play();
-
-                if (playPromise !== undefined) {
-                    playPromise.then(() => {
-                        // Play started successfully, now unmute with fade
-                        video.muted = false;
-                        video.volume = 0;
-                        clearInterval(fadeInterval);
-                        let vol = 0;
-                        fadeInterval = setInterval(() => {
-                            if (vol < savedVolume / 100) {
-                                vol += 0.1;
-                                video.volume = Math.min(vol, savedVolume / 100);
-                            } else {
-                                clearInterval(fadeInterval);
-                            }
-                        }, 50);
-                    }).catch(error => {
-                        console.log('Autoplay prevented:', error);
-                    });
-                }
+                video.play().catch(() => {});
             });
 
             container.addEventListener('mouseleave', () => {
-                // Smooth fade out effect then pause
-                clearInterval(fadeInterval);
-                let vol = video.volume;
-                fadeInterval = setInterval(() => {
-                    if (vol > 0) {
-                        vol -= 0.1;
-                        video.volume = Math.max(vol, 0);
-                    } else {
-                        video.muted = true;
-                        video.pause();
-                        clearInterval(fadeInterval);
-                    }
-                }, 50);
+                video.pause();
+                video.muted = true;
             });
         }
 
