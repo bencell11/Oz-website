@@ -155,46 +155,50 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add cursor effect
-const cursor = document.createElement('div');
-cursor.className = 'custom-cursor';
-document.body.appendChild(cursor);
+// Add cursor effect - only on desktop (not touch devices)
+const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-const cursorStyle = document.createElement('style');
-cursorStyle.textContent = `
-    .custom-cursor {
-        width: 20px;
-        height: 20px;
-        border: 2px solid rgba(102, 126, 234, 0.6);
-        border-radius: 50%;
-        position: fixed;
-        pointer-events: none;
-        z-index: 9999;
-        transition: all 0.1s ease;
-        transform: translate(-50%, -50%);
-    }
-`;
-document.head.appendChild(cursorStyle);
+if (!isTouchDevice && window.innerWidth > 768) {
+    const cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    document.body.appendChild(cursor);
 
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
+    const cursorStyle = document.createElement('style');
+    cursorStyle.textContent = `
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.6);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.1s ease;
+            transform: translate(-50%, -50%);
+        }
+    `;
+    document.head.appendChild(cursorStyle);
 
-// Enlarge cursor on hover over interactive elements
-document.querySelectorAll('a, button, .gallery-item').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.width = '40px';
-        cursor.style.height = '40px';
-        cursor.style.borderColor = 'rgba(255, 0, 110, 0.8)';
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
 
-    el.addEventListener('mouseleave', () => {
-        cursor.style.width = '20px';
-        cursor.style.height = '20px';
-        cursor.style.borderColor = 'rgba(102, 126, 234, 0.6)';
+    // Enlarge cursor on hover over interactive elements
+    document.querySelectorAll('a, button, .gallery-item').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.width = '40px';
+            cursor.style.height = '40px';
+            cursor.style.borderColor = 'rgba(255, 0, 110, 0.8)';
+        });
+
+        el.addEventListener('mouseleave', () => {
+            cursor.style.width = '20px';
+            cursor.style.height = '20px';
+            cursor.style.borderColor = 'rgba(102, 126, 234, 0.6)';
+        });
     });
-});
+}
 
 // Optimized particle system
 function createParticles() {

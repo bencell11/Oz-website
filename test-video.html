@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Video Playback</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .video-container {
+            margin: 20px 0;
+            border: 2px solid #fff;
+            padding: 10px;
+        }
+        video {
+            width: 400px;
+            height: 400px;
+            object-fit: cover;
+            border: 1px solid #666;
+        }
+        h2 {
+            color: #0f0;
+        }
+        .info {
+            color: #ff0;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Playback Test</h1>
+
+    <div class="video-container">
+        <h2>Pass You By - MP4</h2>
+        <video autoplay loop muted playsinline controls>
+            <source src="pass_you_by_cover.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="info">File: pass_you_by_cover.mp4</div>
+    </div>
+
+    <div class="video-container">
+        <h2>Toxic Luvv - MP4</h2>
+        <video autoplay loop muted playsinline controls>
+            <source src="toxic_luvv_cover.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="info">File: toxic_luvv_cover.mp4</div>
+    </div>
+
+    <script>
+        // Check if videos are loading
+        const videos = document.querySelectorAll('video');
+        videos.forEach((video, index) => {
+            video.addEventListener('loadeddata', () => {
+                console.log(`Video ${index + 1} loaded successfully`);
+            });
+            video.addEventListener('error', (e) => {
+                console.error(`Video ${index + 1} failed to load:`, e);
+            });
+        });
+    </script>
+</body>
+</html>
