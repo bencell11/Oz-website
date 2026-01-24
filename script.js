@@ -373,19 +373,29 @@ function initVideoAudioControls() {
             let fadeInterval;
 
             container.addEventListener('mouseenter', () => {
-                video.play();
-                video.muted = false;
-                // Smooth fade in effect
-                clearInterval(fadeInterval);
-                let vol = 0;
-                fadeInterval = setInterval(() => {
-                    if (vol < savedVolume / 100) {
-                        vol += 0.1;
-                        video.volume = Math.min(vol, savedVolume / 100);
-                    } else {
+                // Keep muted initially to allow autoplay, then unmute
+                video.muted = true;
+                const playPromise = video.play();
+
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        // Play started successfully, now unmute with fade
+                        video.muted = false;
+                        video.volume = 0;
                         clearInterval(fadeInterval);
-                    }
-                }, 50);
+                        let vol = 0;
+                        fadeInterval = setInterval(() => {
+                            if (vol < savedVolume / 100) {
+                                vol += 0.1;
+                                video.volume = Math.min(vol, savedVolume / 100);
+                            } else {
+                                clearInterval(fadeInterval);
+                            }
+                        }, 50);
+                    }).catch(error => {
+                        console.log('Autoplay prevented:', error);
+                    });
+                }
             });
 
             container.addEventListener('mouseleave', () => {
