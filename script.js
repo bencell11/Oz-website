@@ -368,12 +368,22 @@ function initVideoAudioControls() {
             });
         }
 
-        // Desktop: play on hover (muted by default - browsers allow muted autoplay)
+        // Desktop: play on hover with sound (requires one click to unlock)
         if (!isMobile) {
+            let userInteracted = false;
+
+            // One click anywhere unlocks audio for all videos
+            document.addEventListener('click', () => {
+                userInteracted = true;
+            }, { once: true });
+
             container.addEventListener('mouseenter', () => {
-                // Play muted - this always works without user interaction
-                video.muted = true;
-                video.play().catch(() => {});
+                video.play().then(() => {
+                    if (userInteracted) {
+                        video.muted = false;
+                        video.volume = savedVolume / 100;
+                    }
+                }).catch(() => {});
             });
 
             container.addEventListener('mouseleave', () => {
