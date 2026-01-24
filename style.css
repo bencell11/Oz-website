@@ -271,22 +271,26 @@ body {
     border-radius: 20px 20px 0 0;
 }
 
-/* Video Controls */
+/* Video Controls - Subtle Modern Design */
 .video-controls {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
     opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
     z-index: 2;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    padding: 0.5rem 0.75rem;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .single-cover:hover .video-controls {
@@ -295,23 +299,26 @@ body {
 }
 
 .play-pause-btn {
-    width: 64px;
-    height: 64px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: rgba(102, 126, 234, 0.9);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+    transition: all 0.2s ease;
+}
+
+.play-pause-btn svg {
+    width: 14px;
+    height: 14px;
 }
 
 .play-pause-btn:hover {
-    transform: scale(1.1);
-    background: rgba(118, 75, 162, 0.95);
-    box-shadow: 0 6px 30px rgba(118, 75, 162, 0.6);
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
 }
 
 .play-pause-btn:active {
@@ -321,64 +328,60 @@ body {
 .volume-control {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 0.75rem 1.25rem;
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    gap: 0.4rem;
 }
 
 .volume-icon {
-    font-size: 1.25rem;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    font-size: 0.85rem;
+    opacity: 0.8;
 }
 
 .volume-slider {
-    width: 100px;
-    height: 6px;
+    width: 60px;
+    height: 3px;
     -webkit-appearance: none;
     appearance: none;
-    background: linear-gradient(90deg,
-        rgba(102, 126, 234, 0.3) 0%,
-        rgba(118, 75, 162, 0.3) 100%);
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
     outline: none;
     cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.volume-slider:hover {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: var(--gradient);
+    background: white;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
 }
 
 .volume-slider::-webkit-slider-thumb:hover {
     transform: scale(1.2);
-    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.7);
 }
 
 .volume-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    background: var(--gradient);
+    background: white;
     cursor: pointer;
     border: none;
-    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.5);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
 }
 
 .volume-slider::-moz-range-thumb:hover {
     transform: scale(1.2);
-    box-shadow: 0 3px 12px rgba(102, 126, 234, 0.7);
 }
 
 .audio-indicator {
