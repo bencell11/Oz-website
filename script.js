@@ -288,6 +288,7 @@ function createLightOrbs() {
 // Video controls with preferences storage
 function initVideoAudioControls() {
     const videoContainers = document.querySelectorAll('.single-cover');
+    const isMobile = window.innerWidth <= 768;
 
     // Load user preferences from localStorage
     const getPreference = (key, defaultValue) => {
@@ -311,6 +312,11 @@ function initVideoAudioControls() {
         const volumeIcon = container.querySelector('.volume-icon');
 
         if (!video) return;
+
+        // Pause video initially - will play on hover/click
+        video.pause();
+        video.muted = true;
+        video.currentTime = 0;
 
         // Set initial volume from saved preference
         video.volume = savedVolume / 100;
@@ -336,6 +342,7 @@ function initVideoAudioControls() {
                 e.stopPropagation();
                 if (video.paused) {
                     video.play();
+                    video.muted = false;
                     playIcon.style.display = 'none';
                     pauseIcon.style.display = 'block';
                 } else {
@@ -361,11 +368,12 @@ function initVideoAudioControls() {
             });
         }
 
-        // Original hover audio controls (smooth fade)
-        let fadeInterval;
+        // Desktop: play on hover
+        if (!isMobile) {
+            let fadeInterval;
 
-        container.addEventListener('mouseenter', () => {
-            if (!video.paused) {
+            container.addEventListener('mouseenter', () => {
+                video.play();
                 video.muted = false;
                 // Smooth fade in effect
                 clearInterval(fadeInterval);
@@ -378,23 +386,24 @@ function initVideoAudioControls() {
                         clearInterval(fadeInterval);
                     }
                 }, 50);
-            }
-        });
+            });
 
-        container.addEventListener('mouseleave', () => {
-            // Smooth fade out effect
-            clearInterval(fadeInterval);
-            let vol = video.volume;
-            fadeInterval = setInterval(() => {
-                if (vol > 0) {
-                    vol -= 0.1;
-                    video.volume = Math.max(vol, 0);
-                } else {
-                    video.muted = true;
-                    clearInterval(fadeInterval);
-                }
-            }, 50);
-        });
+            container.addEventListener('mouseleave', () => {
+                // Smooth fade out effect then pause
+                clearInterval(fadeInterval);
+                let vol = video.volume;
+                fadeInterval = setInterval(() => {
+                    if (vol > 0) {
+                        vol -= 0.1;
+                        video.volume = Math.max(vol, 0);
+                    } else {
+                        video.muted = true;
+                        video.pause();
+                        clearInterval(fadeInterval);
+                    }
+                }, 50);
+            });
+        }
 
         // Update play/pause icon when video state changes
         video.addEventListener('play', () => {
@@ -443,36 +452,34 @@ function initMobileMenu() {
     }
 }
 
-// Optimize videos for mobile
+// Optimize videos for mobile - tap to play/pause
 function optimizeVideosForMobile() {
     const isMobile = window.innerWidth <= 768;
 
     if (isMobile) {
-        // On mobile, make videos autoplay and enable tap to toggle audio
         const videoContainers = document.querySelectorAll('.single-cover');
 
         videoContainers.forEach(container => {
             const video = container.querySelector('.cover-video');
             if (!video) return;
 
-            // Ensure autoplay works on mobile (muted required)
-            video.setAttribute('autoplay', '');
-            video.setAttribute('muted', '');
-            video.play().catch(err => {
-                console.log('Autoplay prevented:', err);
-            });
+            // Videos start paused on mobile
+            video.pause();
+            video.muted = true;
 
-            // Tap anywhere on video container to unmute
+            // Tap anywhere on video container to play/pause
             container.addEventListener('click', function(e) {
                 // Don't trigger if clicking on controls
                 if (e.target.closest('.play-pause-btn') || e.target.closest('.volume-slider')) {
                     return;
                 }
 
-                if (video.muted) {
+                if (video.paused) {
+                    video.play();
                     video.muted = false;
                     video.volume = 0.7;
                 } else {
+                    video.pause();
                     video.muted = true;
                 }
             });

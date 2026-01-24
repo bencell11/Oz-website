@@ -96,62 +96,34 @@ body {
     will-change: transform;
 }
 
-/* Infinity Symbol - Inspired by 4Ever cover */
+/* Infinity Symbol - Using 4Ever cover */
 .infinity-symbol {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-15deg);
-    width: 90vw;
-    max-width: 700px;
-    opacity: 0.25;
+    transform: translate(-50%, -50%);
+    width: 80vw;
+    max-width: 600px;
+    opacity: 0.4;
     z-index: 1;
     pointer-events: none;
-    animation: infinityFloat 10s ease-in-out infinite;
+    animation: infinityFloat 12s ease-in-out infinite;
 }
 
-.infinity-symbol svg {
+.infinity-symbol img {
     width: 100%;
     height: auto;
-}
-
-.infinity-main {
-    stroke-dasharray: 600;
-    animation: infinityPulse 8s ease-in-out infinite;
-}
-
-.infinity-inner {
-    stroke-dasharray: 550;
-    animation: infinityPulse 8s ease-in-out infinite reverse;
+    filter: brightness(1.2) contrast(1.1);
 }
 
 @keyframes infinityFloat {
     0%, 100% {
-        transform: translate(-50%, -50%) rotate(-15deg) scale(1);
-        opacity: 0.2;
-    }
-    25% {
-        transform: translate(-50%, -48%) rotate(-12deg) scale(1.03);
-        opacity: 0.28;
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.35;
     }
     50% {
-        transform: translate(-50%, -50%) rotate(-15deg) scale(1.05);
-        opacity: 0.22;
-    }
-    75% {
-        transform: translate(-50%, -52%) rotate(-18deg) scale(1.02);
-        opacity: 0.3;
-    }
-}
-
-@keyframes infinityPulse {
-    0%, 100% {
-        stroke-opacity: 0.8;
-        stroke-width: 8;
-    }
-    50% {
-        stroke-opacity: 1;
-        stroke-width: 10;
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 0.5;
     }
 }
 
