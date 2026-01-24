@@ -28,6 +28,26 @@
     </nav>
 
     <section id="home" class="hero">
+        <div class="infinity-symbol">
+            <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="infinityGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:rgba(102, 126, 234, 0.8)"/>
+                        <stop offset="50%" style="stop-color:rgba(118, 75, 162, 1)"/>
+                        <stop offset="100%" style="stop-color:rgba(102, 126, 234, 0.8)"/>
+                    </linearGradient>
+                    <filter id="brushEffect" x="-20%" y="-20%" width="140%" height="140%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+                    </filter>
+                </defs>
+                <!-- Multiple brush strokes for organic feel -->
+                <g filter="url(#brushEffect)">
+                    <path class="infinity-path infinity-main" d="M75 75 C75 35, 35 35, 35 75 C35 115, 75 115, 75 75 C75 35, 115 35, 115 75 C115 115, 75 115, 75 75" transform="translate(75, 0) scale(1)" fill="none" stroke="url(#infinityGradient)" stroke-width="8" stroke-linecap="round"/>
+                    <path class="infinity-path infinity-inner" d="M75 75 C75 40, 40 40, 40 75 C40 110, 75 110, 75 75 C75 40, 110 40, 110 75 C110 110, 75 110, 75 75" transform="translate(75, 0) scale(1)" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="12" stroke-linecap="round"/>
+                </g>
+            </svg>
+        </div>
         <div class="hero-content">
             <h1 class="glitch" data-text="Oz">Oz</h1>
             <p class="tagline">Music Artist • Producer • Creative Vision</p>
@@ -40,12 +60,137 @@
         <h2 class="section-title">Music</h2>
         <div class="music-container">
             <div class="singles-grid">
-                <!-- Pass You By -->
+                <!-- I Care -->
                 <div class="single-card" data-aos="fade-up">
                     <div class="single-cover">
                         <video autoplay loop muted playsinline class="cover-video">
+                            <source src="I_Care-video.mp4" type="video/mp4">
+                            <img src="I_Care-cover.jpeg" alt="I Care Cover">
+                        </video>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" aria-label="Play/Pause video">
+                                <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" style="display:none;">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                                </svg>
+                            </button>
+                            <div class="volume-control">
+                                <span class="volume-icon">🔊</span>
+                                <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Volume control">
+                            </div>
+                            <div class="audio-indicator"></div>
+                        </div>
+                        <div class="cover-overlay">
+                            <h3>I Care</h3>
+                        </div>
+                    </div>
+                    <div class="single-links">
+                        <a href="https://open.spotify.com/intl-fr/album/0RHVW28IxA5hGfR5yPBb9Q" target="_blank" class="platform-link spotify">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                            </svg>
+                            Spotify
+                        </a>
+                        <a href="https://music.apple.com/us/album/i-care-single/1857796332" target="_blank" class="platform-link apple">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408a10.61 10.61 0 0 0-.1 1.18c-.004.04-.01.083-.013.124v11.876c.01.152.017.303.026.455.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03a12.5 12.5 0 0 0 1.57-.1c.822-.106 1.596-.35 2.296-.81a5.046 5.046 0 0 0 1.88-2.207c.186-.42.293-.87.344-1.333.067-.586.086-1.175.086-1.765L24 7.69c-.003-.06-.012-.12-.017-.18zM12 19.2c-3.97 0-7.2-3.23-7.2-7.2S8.03 4.8 12 4.8s7.2 3.23 7.2 7.2-3.23 7.2-7.2 7.2zm0-12.857c-3.125 0-5.657 2.532-5.657 5.657 0 3.125 2.532 5.657 5.657 5.657 3.125 0 5.657-2.532 5.657-5.657 0-3.125-2.532-5.657-5.657-5.657zm2.572 7.314v.943c0 .412-.335.746-.746.746h-.943a.746.746 0 0 1-.746-.746v-.943a.746.746 0 0 1 .746-.746h.943c.411 0 .746.334.746.746zm-1.54-4.571c.617 0 1.029.411 1.029 1.029v2.572a.746.746 0 0 1-.746.746h-.943a.746.746 0 0 1-.746-.746V10.115c0-.618.411-1.029 1.029-1.029z"/>
+                            </svg>
+                            Apple Music
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4Ever -->
+                <div class="single-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="single-cover">
+                        <video autoplay loop muted playsinline class="cover-video">
+                            <source src="4Ever-video.mp4" type="video/mp4">
+                            <img src="4Ever_cover.jpeg" alt="4Ever Cover">
+                        </video>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" aria-label="Play/Pause video">
+                                <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" style="display:none;">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                                </svg>
+                            </button>
+                            <div class="volume-control">
+                                <span class="volume-icon">🔊</span>
+                                <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Volume control">
+                            </div>
+                            <div class="audio-indicator"></div>
+                        </div>
+                        <div class="cover-overlay">
+                            <h3>4Ever</h3>
+                        </div>
+                    </div>
+                    <div class="single-links">
+                        <a href="https://open.spotify.com/intl-fr/album/6jLvw3EGqWTHnlYvUKAZtH" target="_blank" class="platform-link spotify">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                            </svg>
+                            Spotify
+                        </a>
+                        <a href="https://music.apple.com/us/album/4ever-single/1857702818" target="_blank" class="platform-link apple">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408a10.61 10.61 0 0 0-.1 1.18c-.004.04-.01.083-.013.124v11.876c.01.152.017.303.026.455.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03a12.5 12.5 0 0 0 1.57-.1c.822-.106 1.596-.35 2.296-.81a5.046 5.046 0 0 0 1.88-2.207c.186-.42.293-.87.344-1.333.067-.586.086-1.175.086-1.765L24 7.69c-.003-.06-.012-.12-.017-.18zM12 19.2c-3.97 0-7.2-3.23-7.2-7.2S8.03 4.8 12 4.8s7.2 3.23 7.2 7.2-3.23 7.2-7.2 7.2zm0-12.857c-3.125 0-5.657 2.532-5.657 5.657 0 3.125 2.532 5.657 5.657 5.657 3.125 0 5.657-2.532 5.657-5.657 0-3.125-2.532-5.657-5.657-5.657zm2.572 7.314v.943c0 .412-.335.746-.746.746h-.943a.746.746 0 0 1-.746-.746v-.943a.746.746 0 0 1 .746-.746h.943c.411 0 .746.334.746.746zm-1.54-4.571c.617 0 1.029.411 1.029 1.029v2.572a.746.746 0 0 1-.746.746h-.943a.746.746 0 0 1-.746-.746V10.115c0-.618.411-1.029 1.029-1.029z"/>
+                            </svg>
+                            Apple Music
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Lov3 -->
+                <div class="single-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="single-cover">
+                        <video autoplay loop muted playsinline class="cover-video">
+                            <source src="Lov3-video.mp4" type="video/mp4">
+                            <img src="Lov3-cover.jpeg" alt="Lov3 Cover">
+                        </video>
+                        <div class="video-controls">
+                            <button class="play-pause-btn" aria-label="Play/Pause video">
+                                <svg class="play-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                                <svg class="pause-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" style="display:none;">
+                                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                                </svg>
+                            </button>
+                            <div class="volume-control">
+                                <span class="volume-icon">🔊</span>
+                                <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Volume control">
+                            </div>
+                            <div class="audio-indicator"></div>
+                        </div>
+                        <div class="cover-overlay">
+                            <h3>Lov3</h3>
+                        </div>
+                    </div>
+                    <div class="single-links">
+                        <a href="https://open.spotify.com/album/1RKYeGcr4ypxjl47lPJsVH" target="_blank" class="platform-link spotify">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                            </svg>
+                            Spotify
+                        </a>
+                        <a href="https://music.apple.com/us/album/lov3-single/1855746646" target="_blank" class="platform-link apple">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.994 6.124a9.23 9.23 0 0 0-.24-2.19c-.317-1.31-1.062-2.31-2.18-3.043a5.022 5.022 0 0 0-1.877-.726 10.496 10.496 0 0 0-1.564-.15c-.04-.003-.083-.01-.124-.013H5.986c-.152.01-.303.017-.455.026-.747.043-1.49.123-2.193.4-1.336.53-2.3 1.452-2.865 2.78-.192.448-.292.925-.363 1.408a10.61 10.61 0 0 0-.1 1.18c-.004.04-.01.083-.013.124v11.876c.01.152.017.303.026.455.05.815.154 1.624.497 2.373.65 1.42 1.738 2.353 3.234 2.801.42.127.856.187 1.293.228.555.053 1.11.06 1.667.06h11.03a12.5 12.5 0 0 0 1.57-.1c.822-.106 1.596-.35 2.296-.81a5.046 5.046 0 0 0 1.88-2.207c.186-.42.293-.87.344-1.333.067-.586.086-1.175.086-1.765L24 7.69c-.003-.06-.012-.12-.017-.18zM12 19.2c-3.97 0-7.2-3.23-7.2-7.2S8.03 4.8 12 4.8s7.2 3.23 7.2 7.2-3.23 7.2-7.2 7.2zm0-12.857c-3.125 0-5.657 2.532-5.657 5.657 0 3.125 2.532 5.657 5.657 5.657 3.125 0 5.657-2.532 5.657-5.657 0-3.125-2.532-5.657-5.657-5.657zm2.572 7.314v.943c0 .412-.335.746-.746.746h-.943a.746.746 0 0 1-.746-.746v-.943a.746.746 0 0 1 .746-.746h.943c.411 0 .746.334.746.746zm-1.54-4.571c.617 0 1.029.411 1.029 1.029v2.572a.746.746 0 0 1-.746.746h-.943a.746.746 0 0 1-.746-.746V10.115c0-.618.411-1.029 1.029-1.029z"/>
+                            </svg>
+                            Apple Music
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pass You By -->
+                <div class="single-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="single-cover">
+                        <video autoplay loop muted playsinline class="cover-video">
                             <source src="pass_you_by_cover.mp4" type="video/mp4">
-                            <!-- Fallback image if video doesn't load -->
                             <img src="pass_you_by.jpeg" alt="Pass You By Cover">
                         </video>
                         <div class="video-controls">
@@ -61,7 +206,7 @@
                                 <span class="volume-icon">🔊</span>
                                 <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Volume control">
                             </div>
-                            <div class="audio-indicator">🔊 Hover to unmute</div>
+                            <div class="audio-indicator"></div>
                         </div>
                         <div class="cover-overlay">
                             <h3>Pass You By</h3>
@@ -84,7 +229,7 @@
                 </div>
 
                 <!-- Back Home to You -->
-                <div class="single-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="single-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="single-cover">
                         <img src="back_home_to_you.jpeg" alt="Back Home to You Cover">
                         <div class="cover-overlay">
@@ -108,7 +253,7 @@
                 </div>
 
                 <!-- U Lie -->
-                <div class="single-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="single-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="single-cover">
                         <img src="U_LIE.jpeg" alt="U Lie Cover">
                         <div class="cover-overlay">
@@ -132,7 +277,7 @@
                 </div>
 
                 <!-- Toxic Luvv -->
-                <div class="single-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="single-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="single-cover">
                         <video autoplay loop muted playsinline class="cover-video">
                             <source src="toxic_luvv_cover.mp4" type="video/mp4">
@@ -152,7 +297,7 @@
                                 <span class="volume-icon">🔊</span>
                                 <input type="range" class="volume-slider" min="0" max="100" value="70" aria-label="Volume control">
                             </div>
-                            <div class="audio-indicator">🔊 Hover to unmute</div>
+                            <div class="audio-indicator"></div>
                         </div>
                         <div class="cover-overlay">
                             <h3>Toxic Luvv</h3>
@@ -175,7 +320,7 @@
                 </div>
 
                 <!-- Shame -->
-                <div class="single-card" data-aos="fade-up" data-aos-delay="400">
+                <div class="single-card" data-aos="fade-up" data-aos-delay="700">
                     <div class="single-cover">
                         <img src="SHAME.jpeg" alt="Shame Cover">
                         <div class="cover-overlay">
