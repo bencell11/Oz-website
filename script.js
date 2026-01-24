@@ -12,17 +12,41 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar background on scroll
+// Optimized scroll handler - combines navbar and parallax
 const navbar = document.querySelector('.navbar');
+const hero = document.querySelector('.hero');
+const isMobileDevice = window.innerWidth <= 768;
+let scrollTicking = false;
+
+// Add will-change for GPU acceleration
+if (hero && !isMobileDevice) {
+    hero.style.willChange = 'transform';
+}
+
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-        navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
-    } else {
-        navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-        navbar.style.boxShadow = 'none';
+    if (!scrollTicking) {
+        window.requestAnimationFrame(() => {
+            const scrollY = window.scrollY;
+
+            // Navbar background
+            if (scrollY > 100) {
+                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
+                navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+
+            // Parallax effect - only on desktop and when hero is visible
+            if (hero && !isMobileDevice && scrollY < window.innerHeight) {
+                hero.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
+            }
+
+            scrollTicking = false;
+        });
+        scrollTicking = true;
     }
-});
+}, { passive: true });
 
 // Simple AOS (Animate On Scroll) implementation
 const observerOptions = {
@@ -138,22 +162,6 @@ galleryItems.forEach(item => {
     });
 });
 
-// Optimized parallax effect for hero section
-let ticking = false;
-
-window.addEventListener('scroll', () => {
-    if (!ticking) {
-        window.requestAnimationFrame(() => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            if (hero) {
-                hero.style.transform = `translate3d(0, ${scrolled * 0.5}px, 0)`;
-            }
-            ticking = false;
-        });
-        ticking = true;
-    }
-});
 
 // Add cursor effect - only on desktop (not touch devices)
 const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
