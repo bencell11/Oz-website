@@ -139,22 +139,18 @@ body {
     padding: 2rem;
 }
 
-.hero-infinity {
-    width: 200px;
+.navbar-infinity {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
     height: auto;
-    margin-bottom: 1rem;
-    filter: invert(1) drop-shadow(0 0 20px rgba(102, 126, 234, 0.5));
-    animation: floatInfinity 4s ease-in-out infinite;
-}
-
-@keyframes floatInfinity {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    filter: invert(1) drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
 }
 
 @media (max-width: 768px) {
-    .hero-infinity {
-        width: 120px;
+    .navbar-infinity {
+        width: 40px;
     }
 }
 
