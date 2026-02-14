@@ -112,9 +112,8 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_8052.jpeg') center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('IMG_8052.jpeg') center/cover fixed;
     overflow: hidden;
-    will-change: transform;
 }
 
 .hero::before {

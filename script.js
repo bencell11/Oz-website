@@ -12,16 +12,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Optimized scroll handler - combines navbar and parallax
+// Navbar scroll effect
 const navbar = document.querySelector('.navbar');
-const hero = document.querySelector('.hero');
-const isMobileDevice = window.innerWidth <= 768;
 let scrollTicking = false;
-
-// Add will-change for GPU acceleration
-if (hero) {
-    hero.style.willChange = 'transform';
-}
 
 window.addEventListener('scroll', () => {
     if (!scrollTicking) {
@@ -35,11 +28,6 @@ window.addEventListener('scroll', () => {
             } else {
                 navbar.style.background = 'rgba(10, 10, 10, 0.95)';
                 navbar.style.boxShadow = 'none';
-            }
-
-            // Parallax effect - on all devices when hero is visible
-            if (hero && scrollY < window.innerHeight) {
-                hero.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
             }
 
             scrollTicking = false;
