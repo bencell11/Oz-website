@@ -476,7 +476,7 @@ body {
 }
 
 .cover-overlay h3 {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 700;
     margin: 0;
     text-align: left;
@@ -486,6 +486,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    white-space: nowrap;
 }
 
 .single-links {
