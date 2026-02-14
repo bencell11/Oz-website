@@ -19,7 +19,7 @@ const isMobileDevice = window.innerWidth <= 768;
 let scrollTicking = false;
 
 // Add will-change for GPU acceleration
-if (hero && !isMobileDevice) {
+if (hero) {
     hero.style.willChange = 'transform';
 }
 
@@ -37,8 +37,8 @@ window.addEventListener('scroll', () => {
                 navbar.style.boxShadow = 'none';
             }
 
-            // Parallax effect - only on desktop and when hero is visible
-            if (hero && !isMobileDevice && scrollY < window.innerHeight) {
+            // Parallax effect - on all devices when hero is visible
+            if (hero && scrollY < window.innerHeight) {
                 hero.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
             }
 
