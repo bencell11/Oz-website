@@ -12,27 +12,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Navbar scroll effect
+// Navbar scroll effect - using class toggle to avoid layout thrashing
 const navbar = document.querySelector('.navbar');
-let scrollTicking = false;
+let navbarScrolled = false;
 
 window.addEventListener('scroll', () => {
-    if (!scrollTicking) {
-        window.requestAnimationFrame(() => {
-            const scrollY = window.scrollY;
-
-            // Navbar background
-            if (scrollY > 100) {
-                navbar.style.background = 'rgba(10, 10, 10, 0.98)';
-                navbar.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.5)';
-            } else {
-                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
-
-            scrollTicking = false;
-        });
-        scrollTicking = true;
+    const shouldBeScrolled = window.scrollY > 100;
+    if (shouldBeScrolled !== navbarScrolled) {
+        navbarScrolled = shouldBeScrolled;
+        navbar.classList.toggle('scrolled', shouldBeScrolled);
     }
 }, { passive: true });
 

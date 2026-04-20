@@ -73,7 +73,12 @@ body {
     z-index: 1000;
     padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    will-change: background, box-shadow;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(10, 10, 10, 0.98);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
