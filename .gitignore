@@ -1,0 +1,10 @@
+# Source video files (convert to .mp4 before committing)
+*.mov
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+*.swp

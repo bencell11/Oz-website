@@ -1,0 +1,8 @@
+# Source video files not served by the site
+*.mov
+
+# Dev/system files
+.DS_Store
+info.txt
+test-video.html
+README.md

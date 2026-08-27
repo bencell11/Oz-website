@@ -324,14 +324,18 @@ function initVideoAudioControls() {
         }
 
         // Play event
+        let pauseDebounce = null;
         video.addEventListener('play', () => {
+            // Cancel any pending pause handling (buffering false-positive)
+            clearTimeout(pauseDebounce);
+
             if (playIcon) playIcon.style.display = 'none';
             if (pauseIcon) pauseIcon.style.display = 'block';
             if (card) card.classList.add('is-playing');
             if (grid) grid.classList.add('has-playing');
             nowPlaying = { video, card };
 
-            // Extract color after frame is ready
+            // Extract dominant color — retry up to 3× if video frame not ready
             const tryExtract = (attempt) => {
                 setTimeout(() => {
                     const color = extractVideoColor(video);
@@ -340,23 +344,25 @@ function initVideoAudioControls() {
                     } else {
                         tryExtract(attempt + 1);
                     }
-                }, attempt === 0 ? 400 : 800);
+                }, attempt === 0 ? 500 : 1000);
             };
             tryExtract(0);
 
             if (window.syncMiniPlayer) window.syncMiniPlayer(video, card, true);
         });
 
-        // Pause event
+        // Pause event — debounced 250ms to ignore buffering micro-pauses
         video.addEventListener('pause', () => {
-            if (playIcon) playIcon.style.display = 'block';
-            if (pauseIcon) pauseIcon.style.display = 'none';
-            if (card) card.classList.remove('is-playing');
-            // Remove has-playing only if nothing else is playing
-            if (grid && !grid.querySelector('.single-card.is-playing')) {
-                grid.classList.remove('has-playing');
-            }
-            if (window.syncMiniPlayer) window.syncMiniPlayer(video, card, false);
+            pauseDebounce = setTimeout(() => {
+                if (!video.paused) return; // video resumed during delay
+                if (playIcon) playIcon.style.display = 'block';
+                if (pauseIcon) pauseIcon.style.display = 'none';
+                if (card) card.classList.remove('is-playing');
+                if (grid && !grid.querySelector('.single-card.is-playing')) {
+                    grid.classList.remove('has-playing');
+                }
+                if (window.syncMiniPlayer) window.syncMiniPlayer(video, card, false);
+            }, 250);
         });
     });
 }
