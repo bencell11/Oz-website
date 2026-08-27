@@ -356,36 +356,38 @@ function initVideoAudioControls() {
             });
         }
 
-        // Desktop: play on hover with sound (requires one click to unlock)
+        // Click anywhere on cover to play/pause (desktop)
         if (!isMobile) {
-            let userInteracted = false;
-
-            // One click anywhere unlocks audio for all videos
-            document.addEventListener('click', () => {
-                userInteracted = true;
-            }, { once: true });
-
-            container.addEventListener('mouseenter', () => {
-                video.play().then(() => {
-                    if (userInteracted) {
-                        video.muted = false;
-                        video.volume = savedVolume / 100;
-                    }
-                }).catch(() => {});
-            });
-
-            container.addEventListener('mouseleave', () => {
-                video.pause();
-                video.muted = true;
+            container.addEventListener('click', (e) => {
+                if (e.target.closest('.play-pause-btn') || e.target.closest('.volume-slider')) return;
+                if (video.paused) {
+                    video.play();
+                    video.muted = false;
+                    video.volume = savedVolume / 100;
+                } else {
+                    video.pause();
+                }
             });
         }
 
-        // Update play/pause icon when video state changes
+        // Populate EQ bars
+        const audioIndicator = container.querySelector('.audio-indicator');
+        if (audioIndicator && audioIndicator.children.length === 0) {
+            for (let i = 0; i < 4; i++) {
+                const span = document.createElement('span');
+                audioIndicator.appendChild(span);
+            }
+        }
+
+        const card = container.closest('.single-card');
+
+        // Update play/pause icon and is-playing class
         video.addEventListener('play', () => {
             if (playIcon && pauseIcon) {
                 playIcon.style.display = 'none';
                 pauseIcon.style.display = 'block';
             }
+            if (card) card.classList.add('is-playing');
         });
 
         video.addEventListener('pause', () => {
@@ -393,6 +395,7 @@ function initVideoAudioControls() {
                 playIcon.style.display = 'block';
                 pauseIcon.style.display = 'none';
             }
+            if (card) card.classList.remove('is-playing');
         });
     });
 }
