@@ -215,20 +215,45 @@ body {
 
 .cta-button {
     display: inline-block;
-    margin-top: 2rem;
-    padding: 1rem 3rem;
-    background: var(--gradient);
-    color: white;
+    margin-top: 2.5rem;
+    padding: 0.9rem 2.8rem;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
     border-radius: 50px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 400;
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    backdrop-filter: blur(6px);
+    transition: all 0.45s ease;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    z-index: -1;
 }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+    border-color: transparent;
+    color: #fff;
+    letter-spacing: 4px;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 36px rgba(102, 126, 234, 0.4);
+}
+
+.cta-button:hover::before {
+    opacity: 1;
 }
 
 .section-title {
@@ -245,7 +270,7 @@ body {
 
 /* Music Section */
 .music {
-    padding: 0;
+    padding: 0 0 6rem;
     background: linear-gradient(135deg, rgba(118, 75, 162, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
 }
 
@@ -261,16 +286,23 @@ body {
 .singles-grid {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0 3rem;
 }
 
 .single-card {
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
+    width: 100%;
+    max-width: 1050px;
+    height: 86vh;
     background: #000;
-    scroll-margin-top: 70px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 .single-cover {
@@ -278,6 +310,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    border-radius: 18px;
 }
 
 /* Video Controls - Fullscreen Bottom Bar */
@@ -682,8 +715,18 @@ footer {
         font-size: 1rem;
     }
 
+    .singles-grid {
+        padding: 0 1.5rem;
+        gap: 2rem;
+    }
+
     .single-card {
-        height: 100svh;
+        height: 82svh;
+        border-radius: 14px;
+    }
+
+    .single-cover {
+        border-radius: 14px;
     }
 
     .cover-overlay {
@@ -748,6 +791,20 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .singles-grid {
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+
+    .single-card {
+        height: 80svh;
+        border-radius: 12px;
+    }
+
+    .single-cover {
+        border-radius: 12px;
+    }
+
     .cover-overlay h3 {
         font-size: 1.7rem;
     }
