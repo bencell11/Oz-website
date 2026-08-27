@@ -1007,7 +1007,19 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .track-nav { display: none; }
+    .track-nav {
+        right: 0.9rem;
+        gap: 8px;
+    }
+
+    .track-dot {
+        width: 2.5px;
+        height: 2.5px;
+    }
+
+    .track-dot.active {
+        height: 20px;
+    }
 }
 
 /* ─── Mini-player ────────────────────────────────────────────────── */
