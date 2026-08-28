@@ -147,15 +147,23 @@ function extractVideoColor(video) {
     }
 }
 
+const navInfinity = document.querySelector('.navbar-infinity');
+
 function applyGlowColor(card, color) {
     card.style.setProperty('--glow-color', color);
     const miniPlayer = document.getElementById('mini-player');
     if (miniPlayer) miniPlayer.style.setProperty('--mini-glow', color);
-    document.documentElement.style.setProperty('--nav-glow', color);
+    // Set filter directly — CSS vars inside drop-shadow() don't update reliably
+    if (navInfinity) {
+        const [r, g, b] = color.split(' ');
+        navInfinity.style.filter = `invert(1) drop-shadow(0 0 14px rgba(${r},${g},${b},0.85))`;
+    }
 }
 
 function resetGlowColor() {
-    document.documentElement.style.setProperty('--nav-glow', '102 126 234');
+    if (navInfinity) {
+        navInfinity.style.filter = 'invert(1) drop-shadow(0 0 10px rgba(102,126,234,0.5))';
+    }
 }
 
 // ─── Track navigation dots ────────────────────────────────────────────────────
