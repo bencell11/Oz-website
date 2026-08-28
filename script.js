@@ -69,7 +69,7 @@ if (!isTouchDevice && window.innerWidth > 768) {
     cursor.className = 'custom-cursor';
     document.body.appendChild(cursor);
     const cursorStyle = document.createElement('style');
-    cursorStyle.textContent = `.custom-cursor{width:20px;height:20px;border:2px solid rgba(102,126,234,.6);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:all .1s ease;transform:translate(-50%,-50%)}`;
+    cursorStyle.textContent = `.custom-cursor{width:20px;height:20px;border:2px solid rgba(217,70,239,.6);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transition:all .1s ease;transform:translate(-50%,-50%)}`;
     document.head.appendChild(cursorStyle);
     document.addEventListener('mousemove', e => {
         cursor.style.left = e.clientX + 'px';
@@ -77,14 +77,14 @@ if (!isTouchDevice && window.innerWidth > 768) {
     });
     document.querySelectorAll('a, button, .gallery-item').forEach(el => {
         el.addEventListener('mouseenter', () => { cursor.style.width = '40px'; cursor.style.height = '40px'; cursor.style.borderColor = 'rgba(255,0,110,.8)'; });
-        el.addEventListener('mouseleave', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; cursor.style.borderColor = 'rgba(102,126,234,.6)'; });
+        el.addEventListener('mouseleave', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; cursor.style.borderColor = 'rgba(217,70,239,.6)'; });
     });
 }
 
 // Particles
 function createParticles() {
     const container = document.getElementById('particles');
-    const colors = ['rgba(102,126,234,.9)','rgba(118,75,162,.85)','rgba(255,0,110,.8)','rgba(167,139,250,.9)','rgba(139,92,246,.85)','rgba(124,58,237,.8)','rgba(236,72,153,.75)'];
+    const colors = ['rgba(217,70,239,.9)','rgba(244,114,182,.85)','rgba(255,0,110,.8)','rgba(249,168,212,.9)','rgba(236,72,153,.85)','rgba(192,38,211,.8)','rgba(251,113,133,.75)'];
     for (let i = 0; i < 50; i++) {
         const p = document.createElement('div');
         p.className = 'particle';
@@ -98,10 +98,10 @@ function createParticles() {
 // Light orbs
 function createLightOrbs() {
     const orbColors = [
-        'radial-gradient(circle, rgba(102,126,234,.3) 0%, transparent 70%)',
-        'radial-gradient(circle, rgba(118,75,162,.35) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(217,70,239,.3) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(244,114,182,.35) 0%, transparent 70%)',
         'radial-gradient(circle, rgba(255,0,110,.25) 0%, transparent 70%)',
-        'radial-gradient(circle, rgba(167,139,250,.3) 0%, transparent 70%)',
+        'radial-gradient(circle, rgba(249,168,212,.3) 0%, transparent 70%)',
     ];
     document.querySelectorAll('.music, .about').forEach(section => {
         const count = Math.floor(Math.random() * 2) + 3;
@@ -140,10 +140,10 @@ function extractVideoColor(video) {
                 totalW += w;
             }
         }
-        if (totalW < 5) return '102 126 234';
+        if (totalW < 5) return '217 70 239';
         return `${Math.round(rW / totalW)} ${Math.round(gW / totalW)} ${Math.round(bW / totalW)}`;
     } catch (e) {
-        return '102 126 234';
+        return '217 70 239';
     }
 }
 
@@ -166,7 +166,7 @@ function applyGlowColor(card, color) {
 function resetGlowColor() {
     if (infinityFill) infinityFill.style.fill = '#ffffff';
     if (navInfinity) {
-        navInfinity.style.filter = 'drop-shadow(0 0 10px rgba(102,126,234,0.6)) drop-shadow(0 0 4px rgba(102,126,234,0.4))';
+        navInfinity.style.filter = 'drop-shadow(0 0 10px rgba(217,70,239,0.6)) drop-shadow(0 0 4px rgba(217,70,239,0.4))';
     }
 }
 
@@ -356,7 +356,7 @@ function initVideoAudioControls() {
             const tryExtract = (attempt) => {
                 setTimeout(() => {
                     const color = extractVideoColor(video);
-                    if (color !== '102 126 234' || attempt >= 3) {
+                    if (color !== '217 70 239' || attempt >= 3) {
                         applyGlowColor(card, color);
                     } else {
                         tryExtract(attempt + 1);

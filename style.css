@@ -9,7 +9,7 @@
     --secondary-color: #ffffff;
     --accent-color: #ff006e;
     --text-color: #f0f0f0;
-    --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient: linear-gradient(135deg, #d946ef 0%, #f472b6 100%);
 }
 
 html {
@@ -146,7 +146,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 30%, rgba(102, 126, 234, 0.1) 70%);
+    background: linear-gradient(45deg, transparent 30%, rgba(217, 70, 239, 0.08) 70%);
     animation: gradientShift 10s ease infinite;
 }
 
@@ -167,7 +167,7 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: auto;
-    filter: drop-shadow(0 0 10px rgba(102,126,234,0.6)) drop-shadow(0 0 4px rgba(102,126,234,0.4));
+    filter: drop-shadow(0 0 10px rgba(217,70,239,0.65)) drop-shadow(0 0 4px rgba(244,114,182,0.45));
     transition: filter 1.2s ease;
 }
 
@@ -239,7 +239,7 @@ body {
     position: absolute;
     inset: 0;
     border-radius: 50px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #d946ef 0%, #f472b6 100%);
     opacity: 0;
     transition: opacity 0.45s ease;
     z-index: -1;
@@ -272,7 +272,7 @@ body {
 /* Music Section */
 .music {
     padding: 0 0 6rem;
-    background: linear-gradient(135deg, rgba(118, 75, 162, 0.05) 0%, rgba(102, 126, 234, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(217, 70, 239, 0.04) 0%, rgba(244, 114, 182, 0.04) 100%);
 }
 
 .music .section-title {
@@ -451,7 +451,7 @@ body {
     display: block;
     width: 3px;
     border-radius: 2px 2px 0 0;
-    background: linear-gradient(to top, #667eea, #a78bfa);
+    background: linear-gradient(to top, #d946ef, #f9a8d4);
     transform-origin: bottom;
     transition: opacity 0.3s ease;
 }
@@ -498,7 +498,7 @@ body {
     text-align: left;
     letter-spacing: -1px;
     line-height: 1.1;
-    background: linear-gradient(135deg, #ffffff 0%, rgba(167, 139, 250, 0.9) 100%);
+    background: linear-gradient(135deg, #ffffff 0%, rgba(249, 168, 212, 0.95) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -560,7 +560,7 @@ body {
 /* About Section */
 .about {
     padding: 6rem 2rem;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(244, 114, 182, 0.04) 0%, rgba(217, 70, 239, 0.04) 100%);
 }
 
 .about-container {
@@ -942,7 +942,7 @@ footer {
 
 /* ─── Dynamic color glow on playing card ───────────────────────── */
 .single-card {
-    --glow-color: 102 126 234;
+    --glow-color: 217 70 239;
     transition: box-shadow 0.7s ease, border-color 0.7s ease, opacity 0.5s ease;
 }
 
@@ -1052,7 +1052,7 @@ footer {
     left: 10%;
     right: 10%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgb(var(--mini-glow, 102 126 234)), transparent);
+    background: linear-gradient(90deg, transparent, rgb(var(--mini-glow, 217 70 239)), transparent);
     opacity: 0.7;
     transition: background 0.8s ease;
 }
@@ -1069,7 +1069,7 @@ footer {
     display: block;
     width: 2.5px;
     border-radius: 2px;
-    background: linear-gradient(to top, rgb(var(--mini-glow, 102 126 234)), #c4b5fd);
+    background: linear-gradient(to top, rgb(var(--mini-glow, 217 70 239)), #fda4c7);
     transform-origin: bottom;
     transition: background 0.8s ease;
 }
