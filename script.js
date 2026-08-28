@@ -148,21 +148,25 @@ function extractVideoColor(video) {
 }
 
 const navInfinity = document.querySelector('.navbar-infinity');
+const infinityFill = document.getElementById('infinity-fill');
 
 function applyGlowColor(card, color) {
     card.style.setProperty('--glow-color', color);
     const miniPlayer = document.getElementById('mini-player');
     if (miniPlayer) miniPlayer.style.setProperty('--mini-glow', color);
-    // Set filter directly — CSS vars inside drop-shadow() don't update reliably
+    const [r, g, b] = color.split(' ');
+    // Change the SVG fill color directly
+    if (infinityFill) infinityFill.style.fill = `rgb(${r},${g},${b})`;
+    // Amplified double glow
     if (navInfinity) {
-        const [r, g, b] = color.split(' ');
-        navInfinity.style.filter = `invert(1) drop-shadow(0 0 14px rgba(${r},${g},${b},0.85))`;
+        navInfinity.style.filter = `drop-shadow(0 0 18px rgba(${r},${g},${b},1)) drop-shadow(0 0 6px rgba(${r},${g},${b},0.9))`;
     }
 }
 
 function resetGlowColor() {
+    if (infinityFill) infinityFill.style.fill = '#ffffff';
     if (navInfinity) {
-        navInfinity.style.filter = 'invert(1) drop-shadow(0 0 10px rgba(102,126,234,0.5))';
+        navInfinity.style.filter = 'drop-shadow(0 0 10px rgba(102,126,234,0.6)) drop-shadow(0 0 4px rgba(102,126,234,0.4))';
     }
 }
 

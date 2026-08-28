@@ -167,7 +167,7 @@ body {
     transform: translateX(-50%);
     width: 60px;
     height: auto;
-    filter: invert(1) drop-shadow(0 0 12px rgb(var(--nav-glow, 102 126 234) / 0.7));
+    filter: drop-shadow(0 0 10px rgba(102,126,234,0.6)) drop-shadow(0 0 4px rgba(102,126,234,0.4));
     transition: filter 1.2s ease;
 }
 
