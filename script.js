@@ -352,18 +352,19 @@ function initVideoAudioControls() {
             if (grid) grid.classList.add('has-playing');
             nowPlaying = { video, card };
 
-            // Extract dominant color — retry up to 3× if video frame not ready
-            const tryExtract = (attempt) => {
-                setTimeout(() => {
-                    const color = extractVideoColor(video);
-                    if (color !== '217 70 239' || attempt >= 3) {
-                        applyGlowColor(card, color);
-                    } else {
-                        tryExtract(attempt + 1);
-                    }
-                }, attempt === 0 ? 500 : 1000);
-            };
-            tryExtract(0);
+            // Extract dominant color immediately, then once more when a frame is ready
+            const color0 = extractVideoColor(video);
+            if (color0 !== '217 70 239') {
+                applyGlowColor(card, color0);
+            } else {
+                // Frame not rendered yet — re-try on first timeupdate (real frame available)
+                const onFrame = () => {
+                    video.removeEventListener('timeupdate', onFrame);
+                    const color1 = extractVideoColor(video);
+                    applyGlowColor(card, color1);
+                };
+                video.addEventListener('timeupdate', onFrame);
+            }
 
             if (window.syncMiniPlayer) window.syncMiniPlayer(video, card, true);
         });
