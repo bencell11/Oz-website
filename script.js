@@ -151,6 +151,11 @@ function applyGlowColor(card, color) {
     card.style.setProperty('--glow-color', color);
     const miniPlayer = document.getElementById('mini-player');
     if (miniPlayer) miniPlayer.style.setProperty('--mini-glow', color);
+    document.documentElement.style.setProperty('--nav-glow', color);
+}
+
+function resetGlowColor() {
+    document.documentElement.style.setProperty('--nav-glow', '102 126 234');
 }
 
 // ─── Track navigation dots ────────────────────────────────────────────────────
@@ -360,6 +365,7 @@ function initVideoAudioControls() {
                 if (card) card.classList.remove('is-playing');
                 if (grid && !grid.querySelector('.single-card.is-playing')) {
                     grid.classList.remove('has-playing');
+                    resetGlowColor();
                 }
                 if (window.syncMiniPlayer) window.syncMiniPlayer(video, card, false);
             }, 250);
