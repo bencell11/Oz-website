@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "oz",
+  "name": "Oz",
+  "status": "deployed",
+  "updatedAt": "2026-09-27T00:00:00Z",
+  "url": "https://www.ozblues.com",
+  "theme": { "accent": "#ff006e", "surface": "#140a12" },
+  "highlights": ["Music", "Videos", "Artwork"],
+  "capabilities": [
+    {
+      "id": "media.list",
+      "label": "Releases",
+      "description": "Les sorties d'Oz, avec leurs liens d'écoute et un aperçu vidéo.",
+      "type": "media",
+      "access": "public"
+    },
+    {
+      "id": "navigation.open",
+      "label": "Ouvrir ozblues.com",
+      "type": "navigation",
+      "access": "public",
+      "href": "https://www.ozblues.com"
+    }
+  ]
+}
